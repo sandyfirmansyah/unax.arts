@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UNAX Arts Price List</title>
+<meta name="robots" content="noindex">
+<style>
+  html, body { height: 100%; margin: 0; }
+  body {
+    display: grid; place-items: center; text-align: center;
+    background: radial-gradient(115% 70% at 50% 24%, #8c0e14 0%, #620308 38%, #350003 75%, #1e0001 100%) #350003;
+    color: #fff6ee; font-family: Georgia, "Times New Roman", serif;
+  }
+  .wrap { display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 24px; }
+  svg { width: 46px; height: auto; fill: #fff6ee; animation: pulse 1.4s ease-in-out infinite; }
+  @keyframes pulse { 50% { opacity: .45; transform: scale(.94); } }
+  h1 { margin: 0; font: italic 400 30px/1.1 Georgia, serif; color: #fbe3c9; }
+  p { margin: 0; font: 400 14px/1.6 Arial, sans-serif; color: rgba(255,246,238,.75); }
+  a { color: #fbe3c9; }
+  @media (prefers-reduced-motion: reduce) { svg { animation: none; } }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <svg viewBox="-2 -2 92 114" aria-hidden="true"><path d="M40 0 L0 66 L21 63 L40 33 Z"/><path d="M48 0 L88 66 L67 63 L48 33 Z"/><path d="M44 40 L59 66 L44 79 L29 66 Z"/><path d="M0 73 L40 109 L40 86 L22 70 Z"/><path d="M88 73 L48 109 L48 86 L66 70 Z"/></svg>
+    <h1>Opening our price list&hellip;</h1>
+    <p>If nothing happens, <a id="go" href="https://claude.ai/artifact/2ArznX6qGSARGpDtnLp66Q">tap here</a>.</p>
+  </div>
+  <script>
+    // Load the price list in this same browser tab, without a tap, so the phone keeps it in the browser.
+    location.replace("https://claude.ai/artifact/2ArznX6qGSARGpDtnLp66Q");
+  </script>
+  <noscript><meta http-equiv="refresh" content="0; url=https://claude.ai/artifact/2ArznX6qGSARGpDtnLp66Q"></noscript>
+</body>
+</html>
