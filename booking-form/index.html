@@ -35,13 +35,11 @@ a { color: inherit; }
   background: radial-gradient(130% 85% at 50% 0%, #5e0407 0%, #4a0000 45%, #300002 100%) var(--wine-800);
   box-shadow: 0 40px 80px -30px rgba(0,0,0,.8), 0 0 0 1px rgba(246,217,180,.08);
 }
-.inner { padding: 52px 30px 44px; display: flex; flex-direction: column; gap: 0; }
+.inner { padding: 40px 30px 44px; display: flex; flex-direction: column; gap: 0; }
 
-header { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 14px; margin-bottom: 34px; }
-.brand { font: 400 46px/1 var(--script); margin: 0;
-  background: linear-gradient(180deg, #fff0de 10%, #efc9a3 90%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+header { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; margin-bottom: 30px; }
 .eyebrow { margin: 0; font: 500 11px/1.4 var(--sans); letter-spacing: .32em; text-transform: uppercase; color: var(--rose); }
-h1 { margin: 0; font: italic 500 clamp(42px, 12vw, 54px)/1 var(--title); text-wrap: balance; }
+h1#title { margin: 0; font: italic 500 clamp(30px, 8.5vw, 36px)/1.05 var(--title); text-wrap: balance; color: var(--cream); }
 .lede { margin: 0; font: 300 14.5px/1.8 var(--sans); color: rgba(255,246,238,.78); max-width: 26em; }
 
 form { display: flex; flex-direction: column; gap: 26px; }
@@ -79,7 +77,7 @@ input[type="date"]::-webkit-calendar-picker-indicator, input[type="time"]::-webk
 .chips input:focus-visible + span { outline: 2px solid var(--cream); outline-offset: 3px; }
 
 .reveal { display: none; }
-.reveal.open { display: block; animation: rise .45s ease both; }
+.reveal.open { display: block; animation: rise .45s ease backwards; }
 
 .trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
@@ -96,10 +94,9 @@ input[type="date"]::-webkit-calendar-picker-indicator, input[type="time"]::-webk
 
 /* thank-you screen */
 .done { display: none; text-align: center; flex-direction: column; align-items: center; gap: 18px; padding: 20px 0 8px; }
-.done.show { display: flex; animation: rise .6s ease both; }
+.done.show { display: flex; animation: rise .6s ease backwards; }
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-.done .script { font: 400 64px/1 var(--script); margin: 0;
-  background: linear-gradient(180deg, #fff0de 10%, #efc9a3 90%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.done .script { font: 400 64px/1 var(--script); margin: 0; color: var(--cream); }
 .wa {
   display: inline-flex; align-items: center; gap: 10px; text-decoration: none; margin-top: 6px;
   background: var(--wa); color: #fff; border-radius: 999px; padding: 15px 24px;
@@ -110,16 +107,32 @@ input[type="date"]::-webkit-calendar-picker-indicator, input[type="time"]::-webk
 footer { text-align: center; margin-top: 22px; }
 footer a { font: 500 10.5px/1 var(--sans); letter-spacing: .28em; text-transform: uppercase; color: rgba(220,176,162,.75); text-decoration: none; }
 
+/* ---------- intro (same as the price list): the logo draws itself, then opens like a window onto the form ---------- */
+#intro { position: fixed; inset: 0; z-index: 50; cursor: pointer; }
+#veil { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.intro-mark { position: absolute; inset: 0; display: grid; place-items: center; }
+.intro-logo { width: 84px; height: auto; overflow: visible; display: block; }
+.intro-logo .logo-shapes path { fill: var(--ivory); stroke: var(--cream); stroke-width: 1.1; stroke-dasharray: 1; stroke-dashoffset: 0; }
+.intro-words { position: absolute; left: 0; right: 0; top: calc(50% + 74px); display: flex; flex-direction: column; align-items: center; }
+.intro-name { margin: 0; font: 600 22px/1 var(--title); letter-spacing: .55em; padding-left: .55em; color: var(--ivory); display: flex; }
+.intro-name span { display: inline-block; white-space: pre; }
+.intro-skip { position: absolute; bottom: calc(22px + env(safe-area-inset-bottom)); left: 0; right: 0; text-align: center; font: 500 10.5px/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: rgba(246,217,180,.45); }
+body.intro-on { overflow: hidden; }
+
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 @media (max-width: 380px) { .row { grid-template-columns: 1fr; } .inner { padding: 44px 22px 36px; } }
 </style>
 </head>
 <body>
+<div id="intro" aria-hidden="true">
+  <svg id="veil" xmlns="http://www.w3.org/2000/svg"></svg>
+  <div class="intro-mark"><svg class="intro-logo" viewBox="-2 -2 92 114" aria-hidden="true" focusable="false"><defs><clipPath id="li-clip"><path d="M40 0 L0 66 L21 63 L40 33 Z"/><path d="M48 0 L88 66 L67 63 L48 33 Z"/><path d="M44 40 L59 66 L44 79 L29 66 Z"/><path d="M0 73 L40 109 L40 86 L22 70 Z"/><path d="M88 73 L48 109 L48 86 L66 70 Z"/></clipPath><linearGradient id="li-g" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><g class="logo-shapes"><path d="M40 0 L0 66 L21 63 L40 33 Z" pathLength="1"/><path d="M48 0 L88 66 L67 63 L48 33 Z" pathLength="1"/><path d="M44 40 L59 66 L44 79 L29 66 Z" pathLength="1"/><path d="M0 73 L40 109 L40 86 L22 70 Z" pathLength="1"/><path d="M88 73 L48 109 L48 86 L66 70 Z" pathLength="1"/></g><g clip-path="url(#li-clip)"><rect class="sheen" x="-70" y="-10" width="46" height="135" fill="url(#li-g)"/></g></svg></div>
+  <div class="intro-words"><p class="intro-name">UNAX ARTS</p></div>
+  <div class="intro-skip">Tap to skip</div>
+</div>
 <main class="card">
   <div class="inner">
     <header>
-      <p class="brand">UNAX Arts</p>
-      <p class="eyebrow">Booking</p>
       <h1 id="title">Book your date</h1>
       <p class="lede" id="lede">Tell us about your day and we'll send your invoice on WhatsApp.</p>
     </header>
@@ -286,6 +299,76 @@ function showDone(d) {
   $('done').classList.add('show');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+// ---------- intro (same as the price list) ----------
+(() => {
+  const intro = document.getElementById('intro');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let seen = false;
+  try { seen = sessionStorage.getItem('unaxIntro') === '1'; sessionStorage.setItem('unaxIntro', '1'); } catch (e) {}
+  if (reduce || seen) { intro.remove(); return; }
+  document.body.classList.add('intro-on');
+
+  // veil: deep-red layer with a logo-shaped hole that starts closed
+  const NS = 'http://www.w3.org/2000/svg';
+  const veil = document.getElementById('veil');
+  const logoEl = intro.querySelector('.intro-logo');
+  const W = innerWidth, H = innerHeight;
+  const r = logoEl.getBoundingClientRect();
+  const k = r.width / 92;
+  const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+  const shapes = [...logoEl.querySelectorAll('.logo-shapes path')].map(p => '<path d="' + p.getAttribute('d') + '"/>').join('');
+  veil.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+  veil.innerHTML =
+    '<defs><mask id="veil-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="' + W + '" height="' + H + '">' +
+      '<rect width="' + W + '" height="' + H + '" fill="#fff"/>' +
+      '<g transform="translate(' + cx + ' ' + cy + ')"><g id="hole" style="transform: scale(0)">' +
+        '<g transform="scale(' + k + ') translate(-44 -55)" fill="#000">' + shapes + '</g></g></g>' +
+    '</mask></defs>' +
+    '<radialGradient id="veil-g" cx="50%" cy="0%" r="110%"><stop offset="0" stop-color="#5e0407"/><stop offset=".45" stop-color="#4a0000"/><stop offset="1" stop-color="#300002"/></radialGradient>' +
+    '<g mask="url(#veil-mask)"><rect width="' + W + '" height="' + H + '" fill="url(#veil-g)"/></g>';
+  const hole = document.getElementById('hole');
+
+  const tl = [];
+  const A = (el, kf, o) => { const a = el.animate(kf, Object.assign({ fill: 'both', easing: 'cubic-bezier(.3,.6,.2,1)' }, o)); tl.push(a); return a; };
+  // page animations only fill "backwards", so nothing (blur, scale) is left on the text afterwards and it stays crisp
+  const P = (el, kf, o) => { const a = el.animate(kf, Object.assign({ fill: 'backwards', easing: 'cubic-bezier(.2,.7,.2,1)' }, o)); tl.push(a); return a; };
+  const nameEl = intro.querySelector('.intro-name');
+  nameEl.innerHTML = [...nameEl.textContent].map(c => '<span>' + c + '</span>').join('');
+
+  // 1. the gem draws itself, fills, catches the light
+  intro.querySelectorAll('.intro-logo .logo-shapes path').forEach((p, i) => {
+    A(p, [{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }], { duration: 800, delay: 120 + i * 85, easing: 'cubic-bezier(.5,0,.2,1)' });
+    A(p, [{ fillOpacity: 0 }, { fillOpacity: 1 }], { duration: 500, delay: 820 + i * 40 });
+  });
+  A(logoEl, [{ transform: 'scale(.86)' }, { transform: 'scale(1)' }], { duration: 1400, delay: 80 });
+  nameEl.querySelectorAll('span').forEach((s, i) => {
+    A(s, [{ opacity: 0, transform: 'translateY(10px)', filter: 'blur(4px)' }, { opacity: 1, transform: 'none', filter: 'blur(0)' }], { duration: 560, delay: 950 + i * 50 });
+  });
+  A(intro.querySelector('.intro-skip'), [{ opacity: 0 }, { opacity: 1 }], { duration: 400, delay: 600 });
+  A(intro.querySelector('.sheen'), [{ transform: 'translateX(0) skewX(-18deg)' }, { transform: 'translateX(200px) skewX(-18deg)' }], { duration: 900, delay: 1500, easing: 'ease-in-out' });
+
+  // 2. words step back, the gem turns into a window and zooms through to the form
+  const OPEN = 2300;
+  A(intro.querySelector('.intro-words'), [{ opacity: 1, transform: 'none', filter: 'blur(0)' }, { opacity: 0, transform: 'translateY(10px)', filter: 'blur(6px)' }], { duration: 420, delay: OPEN - 380, easing: 'ease-in' });
+  A(intro.querySelector('.intro-skip'), [{ opacity: 1 }, { opacity: 0 }], { duration: 300, delay: OPEN - 380 });
+  A(logoEl, [{ opacity: 1 }, { opacity: 0 }], { duration: 160, delay: OPEN, easing: 'linear' });
+  tl.push(hole.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.35)', offset: .18 }, { transform: 'scale(70)' }],
+    { duration: 1350, delay: OPEN, easing: 'cubic-bezier(.65,0,.35,1)', fill: 'forwards' }));
+  A(veil, [{ opacity: 1 }, { opacity: 0 }], { duration: 450, delay: OPEN + 950, easing: 'ease-out' });
+
+  // 3. the form settles in behind it
+  P(document.querySelector('.card'), [{ transform: 'scale(1.06)', opacity: .6 }, { transform: 'none', opacity: 1 }], { duration: 1600, delay: OPEN });
+  P(document.getElementById('title'), [{ opacity: 0, transform: 'translateY(16px)', filter: 'blur(8px)' }, { opacity: 1, transform: 'none', filter: 'blur(0)' }], { duration: 1000, delay: OPEN + 700 });
+  P(document.getElementById('lede'), [{ opacity: 0, transform: 'translateY(12px)' }, { opacity: 1, transform: 'none' }], { duration: 800, delay: OPEN + 950 });
+  P(document.getElementById('form'), [{ opacity: 0, transform: 'translateY(18px)' }, { opacity: 1, transform: 'none' }], { duration: 900, delay: OPEN + 1150 });
+
+  let skipped = false;
+  function skip() { if (skipped) return; skipped = true; tl.forEach(a => { try { a.finish(); } catch (e) {} }); }
+  intro.addEventListener('pointerdown', skip);
+  addEventListener('keydown', skip, { once: true });
+  Promise.all(tl.map(a => a.finished)).then(() => { intro.remove(); document.body.classList.remove('intro-on'); });
+})();
 </script>
 </body>
 </html>
